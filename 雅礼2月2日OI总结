@@ -1,0 +1,81 @@
+# 雅礼2月2日OI总结
+
+史上最差的一次之一，~~至少我不生气就好的了~~
+
+## A题
+开场直接愣住！
+别人说这是签到题，我压根不会！
+晕~
+看题解，斐波那契数列！说实在的，我不会！
+查AI，**线性 DP / 递推**……
+DP未学……
+只能看一下后面我用AI**辅助**写的代码和思路：
+代码：
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+  ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+  int k;
+  cin >> k; 
+
+  long long a = 1, b = 0;
+
+  for (int i = 1; i <= k; i++) {
+      long long Newa = b;      
+      long long Newb = a + b; 
+      a = Newa;
+      b = Newb;
+  }
+  cout << a << " " << b << endl;
+  return 0;
+}
+```
+思路：设按 $n$ 次按钮后，$A$ 的数量为 $a[n]$ ，$B$ 的数量为 $b[n]$ 。
+从第 $n-1$ 次到第 $n$ 次，根据转换规则推导来源：
+新的 $A$ 只能来自旧的 $B$：因为 $A$ 转换后变成 $B$，只有 $B$ 转换为 $BA$ 时会产生 $1$ 个 $A → a[n] = b[n-1]$
+新的 $B$ 来自旧的 $A$ + 旧的 $B$：$A$ 转换为 $1$ 个 $B$，$B$ 转换为 $BA$ 时会产生 $1$ 个 $B → b[n] = a[n-1] + b[n-1]$
+
+## B题
+愣住+1，~~真festival~~，一样的不会！
+~~AI写代码都不会~~实际上是看了好久才会。
+*Note：下面几行为AI答复，非本人，请注意。*
+设$dp[i][j]$表示：将前 $i$ 个糖果（$1~i$，$i$ 为当前最大值） 分成 $j$ 个满足所有规则的相同盒子，对应的总方案数。
+解题目标：求 $dp[n][k]$（ $n$ 个糖果分 $k$ 个盒子的合法方案数）。
+**最终转移方程**
+两种情况为互斥且全覆盖，方案数相加后对 $109+7$ 取模（避免溢出）： $dp[i][j]=(dp[i−1][j−1]+dp[i−1][j]×(i−1))modMOD$ 其中 $MOD=109+7$。
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int kMod = 1e9 + 7;
+const int kMaxN = 5005;     
+long long dp[kMaxN][kMaxN];  
+
+int main() {
+  int n, k;
+  cin >> n >> k;
+  dp[0][0] = 1;
+  for (int i = 1; i <= n; i++) { 
+    int max_j = min(i, k);
+    for (int j = 1; j <= max_j; j++) {
+      dp[i][j] = (dp[i - 1][j - 1] + 1LL * dp[i - 1][j] * (i - 1)) % kMod;
+    }
+  }
+
+  cout << dp[n][k] % kMod << endl;
+  return 0;
+}
+```
+
+## C题
+愣住+2
+
+## D题
+愣住+3
+——————————————
+C，D完全看不懂题！只能说完全“扛不动”。
+先把第一和第二题给搞好！
+**刚来的蒟蒻**真**不容易**呀！
