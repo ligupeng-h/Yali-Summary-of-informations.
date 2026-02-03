@@ -8,7 +8,7 @@
 
 **Hello!**
 
-我是一个喜欢$Techology$ & $Aerospace$ $Science$ & $English$的**六年级**小**蒟蒻**。
+我是一个喜欢 $Techology$ & $Aerospace$ $Science$ & $English$的**六年级**小**蒟蒻**。
 
 我也是一个**数学**$98$分、**语文**$95$分的班级“**蒟蒻**”。
 ———————————————————————
